@@ -1,3 +1,6 @@
-*.swp
 *.pyc
-api/env
+vagrant/modules/
+!vagrant/modules/README.md
+vagrant/.vagrant/
+vagrant/.tmp/
+vagrant/.librarian/

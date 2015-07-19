@@ -1,7 +1,7 @@
 import redis
 import unittest
 from api import app
-from utils import redis_get_domains, redis_insert_domain, redis_delete_domain
+from api.utils import redis_get_domains, redis_insert_domain, redis_delete_domain
 
 class RedisTest(unittest.TestCase):
     def setUp(self):

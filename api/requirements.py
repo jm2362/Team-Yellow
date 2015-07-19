@@ -1,19 +1,10 @@
 Flask==0.10.1
+Flask-Cors==1.9.0
 Jinja2==2.7.3
 MarkupSafe==0.23
-SOAPpy==0.12.0
 Werkzeug==0.9.6
-apt-xapian-index==0.45
-argparse==1.2.1
-chardet==2.0.1
-## FIXME: could not find svn URL in dependency_links for this package:
-distribute==0.6.24dev-r0
-fpconst==0.7.2
+gunicorn==19.1.1
 itsdangerous==0.24
-mercurial==2.2.2
-python-apt==0.8.8.2
-python-debian==0.1.21
-python-debianbts==1.11
-reportbug==6.4.4
-virtualenv==1.11.6
+redis==2.10.3
+six==1.8.0
 wsgiref==0.1.2

@@ -6,6 +6,8 @@
         <link rel=stylesheet href="bower_components/foundation/css/foundation.css">
         <link rel=stylesheet href="bower_components/foundation-icons/foundation-icons.css">
         <link rel=stylesheet href="bower_components/slick.js/slick/slick.css">
+	<link rel=stylesheet href='//fonts.googleapis.com/css?family=Roboto:100,100italic,300italic,400,500'>
+        <link href='//fonts.googleapis.com/css?family=Roboto+Condensed:400,300' rel='stylesheet' type='text/css'>
         <link rel=stylesheet href="css/main.css">
     </head>
     <body ng-app="app">
@@ -16,39 +18,43 @@
                         <a class="left-off-canvas-toggle menu-icon"><span></span></a>
                     </section>
                     <section class="middle tab-bar-section">
-                        <h1 class="title">Marvelous</h1>
-                    </section>
-                    <section class="right-small">
-                        <a class="right-off-canvas-toggle menu-icon" href="#"><span></span></a>
+                        <a href="/#"><h1 class="title">Marvelous</h1></a>
                     </section>
                 </nav>
                 <aside class="left-off-canvas-menu">
                     <ul class="off-canvas-list">
-                        <li><label>Add On Options</label></li>
+                        <li><label>Available Templates</label></li>
                         <li><a href="#/so-boxy">So-Boxy</a></li>
                         <li><a href="#/banded">Banded</a></li>
                         <li><a href="#/contact">Contact</a></li>
                         <li>
-                            <form class="business-form">
+                            <form class="business-form" name="businessForm">
                                 <fieldset>
                                     <legend>Bussiness Information</legend>
                                         <label>Business Name
-                                            <input type="text" ng-model="businessName" ng-change="changeBusinessInfo('businessName', businessName)" placeholder="Name">
+                                            <input type="text" ng-model="businessInfo.businessName" ng-change="changeBusinessInfo('businessName', businessInfo.businessName)" placeholder="Name" name="businessName" required>
+					    <span class="error" ng-show="businessForm.businessName.$error.required">Business Name is Required!</span>
                                         </label>
                                         <label>Business Email
-                                            <input type="text" ng-model="businessEmail" ng-change="changeBusinessInfo('businessEmail', businessEmail)" placeholder="Email">
+                                            <input type="text" ng-model="businessInfo.businessEmail" ng-change="changeBusinessInfo('businessEmail', businessEmail)" placeholder="Email" name="businessEmail" required>
+					    <span class="error" ng-show="businessForm.businessEmail.$error.required">Business Email is Required!</span>
                                         </label>
                                         <label>Business Phone Number
-                                            <input type="text" ng-model="phoneNumber" ng-change="changeBusinessInfo('phoneNumber', phoneNumber)" placeholder="Phone Number">
+                                            <input type="text" ng-model="businessInfo.phoneNumber" ng-change="changeBusinessInfo('phoneNumber', phoneNumber)" placeholder="Phone Number" name="phoneNumber" required>
+					    <span class="error" ng-show="businessForm.phoneNumber.$error.required">Phone Number is Required!</span>
                                         </label>
                                         <label>Business Domain Name
-                                            <input type="text" ng-model="domainName" ng-change="changeBusiness('domainName', domainName)" placeholder="Domain Name">
+                                            <input type="text" ng-model="businessInfo.domainName" ng-change="changeBusiness('domainName', domainName)" placeholder="Domain Name" name="domainName" required>
+					    <span class="error" ng-show="businessForm.domainName.$error.required">Domain Name is Required!</span>
+					    <span class="error" ng-show="domainExist == true && businessInfo.domainName != ''">{{domainExist}} Domain Name already exists</span>
                                         </label>
-                                        <a href="#" data-reveal-id="myModal" class="button">Register Domain</a>
+                                        <a href="" ng-disabled="businessForm.$valid == false && domainExist == true" ng-class="{disabled: businessForm.$valid === false && domainExist === false}"
+					   data-reveal-id="myModal" ng-click="registerDomain(businessInfo, businessForm.$valid)" class="button register">Register Domain</a>
                                         <div id="myModal" class="reveal-modal" data-reveal>
-                                            <h2>Your website should be live at {{domainName}}</h2>
-                                            <p class="lead">Please contact us at 254 fak enum</p>
-                                            <p>Our designers/engineers are available 24/7</p>
+                                            <h1 class="text-center" style="background-color: rgba(52, 152, 219, 1.0); color: white; padding-right: 2em;">Congratulations!</h1>
+                                            <h3>Your {{buisnessInfo.buisnessName}}  website should be live at {{businessInfo.domainName}}.{{businessInfo.hostname}}</h3>
+                                            <p class="lead">If your website is not live call us at <a href="tel:+19078543082">(512)555-1234</a> or E-Mail us at <a href="mailto:admin@sangm.io">admin@{{businessInfo.hostname}}</a>.</p>
+                                            <p>Our designers/engineers are available 24/7 for your support.</p>
                                             <a class="close-reveal-modal">&#215;</a>
                                         </div>
                                     </fieldset>
@@ -59,7 +65,6 @@
                 <section class="main-section">
                     <div ng-view=""></div>
                 </section>
-
                 <a class="exit-off-canvas"></a>
           </div>
         </div>
@@ -67,6 +72,7 @@
         <script src="bower_components/angular/angular.js"></script>
         <script src="bower_components/angular-touch/angular-touch.js"></script>
         <script src="bower_components/angular-route/angular-route.js"></script>
+	<script src="bower_components/angular-resource/angular-resource.js"></script>
         <script src="bower_components/jquery/dist/jquery.js"></script>
         <script src="bower_components/slick.js/slick/slick.js"></script>
         <script src="bower_components/angular-slick/dist/slick.js"></script>
@@ -75,7 +81,7 @@
         <script src="app/controllers.js"></script>
         <script src="app/services.js"></script>
         <script>$(document).foundation();</script>
-        <script>
-        </script>
+	<script>
+	</script>
     </body>
 </html>
